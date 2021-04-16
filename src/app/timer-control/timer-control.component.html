@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-6 text-center">
+            <button class="btn btn-primary" 
+            [disabled]="timerActive == true" 
+            (click)="startCountUp()">Start Count</button>
+        </div>
+        <div class="col-xs-6 text-center">
+            <button class="btn btn-danger" (click)="stopCountUp()">Stop Count</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-3"></div>
+        <div class="col-xs-6 text-center">
+            <div id="test_box">
+                <!-- <p>timerActive: {{ timerActive }} </p> -->
+                <p>tCount: {{ tCount }} </p>
+            </div>        </div>
+        <div class="col-xs-3"></div>
+    </div>
+</div>
+
+<hr>
