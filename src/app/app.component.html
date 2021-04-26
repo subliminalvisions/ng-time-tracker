@@ -11,9 +11,9 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-xs-12">
+    <div class="col-xs-12 text-center">
       <!-- <p>currentCount:: {{ currentCount }} </p> -->
-      <p>myCount:: {{ myCount }} </p>
+      <p>mCount# in parent: {{ myCount }} </p>
       <!-- <p [count]="myCount" (emitCount)="countChange($event)"> -->
     <!-- </p> -->
     </div>
@@ -23,10 +23,10 @@
 <!--  <app-server-element *ngFor="let serverElement of serverElements" 
       [srvElement]="serverElement" 
       [name]="serverElement.name" > -->
-      <app-number-odd *ngFor="let num of oddArray"></app-number-odd>
+      <app-number-odd *ngFor="let num of oddArray" [nCount]="myCount"></app-number-odd>
     </div>
     <div class="col-sm-6">
-      <app-number-even *ngFor="let num of evenArray"></app-number-even>
+      <app-number-even *ngFor="let num of evenArray" [nCount]="myCount"></app-number-even>
     </div>
   </div>
   <hr>

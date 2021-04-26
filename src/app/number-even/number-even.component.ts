@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-number-even',
@@ -6,10 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./number-even.component.css']
 })
 export class NumberEvenComponent implements OnInit {
+  @Input() nCount: number;
+  staticNum: number;
 
   constructor() { }
 
   ngOnInit(): void {
+    this.staticNum= this.nCount;
   }
 
 }
