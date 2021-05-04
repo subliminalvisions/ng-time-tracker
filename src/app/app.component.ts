@@ -6,27 +6,41 @@ import { Component, ViewChild } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  
   // public countArray: number[] = [];
   public oddArray: number[] = [];
   public evenArray: number[] = [];
   public myCount: number = 0;
-  
-  countChange(event) {
-    this.myCount = event;
-    this.pushNum(this.myCount);
+  _start: boolean=false;
+
+  constructor(){
   }
-  pushNum(num: number) {
-    if(num % 2  == 0) {this.pushEven(num)}
-    else {this.pushOdd(num)}
+  // countChange(event) {
+  //   this.myCount = event;
+  //   this.pushNum(this.myCount);
+  // }
+  // pushNum(num: number) {
+  //   if(num % 2  == 0) {this.pushEven(num)}
+  //   else {this.pushOdd(num)}
+  // }
+  // pushOdd(count: number) {
+  //   this.oddArray.push(count);
+  //   console.log('odd', this.oddArray);
+  // }
+  // pushEven(count: number) {
+  //   this.evenArray.push(count);
+  //   console.log('Even', this.evenArray);
+  // }
+
+
+  ngOnInit(){
   }
-  pushOdd(count: number) {
-    this.oddArray.push(count);
-    console.log('odd', this.oddArray);
+
+  start(){
+    this._start=true;
   }
-  pushEven(count: number) {
-    this.evenArray.push(count);
-    console.log('Even', this.evenArray);
+  clear(){
+    this._start=false;
   }
+
 
 }
