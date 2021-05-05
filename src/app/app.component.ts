@@ -31,7 +31,6 @@ export class AppComponent {
   //   console.log('Even', this.evenArray);
   // }
 
-
   ngOnInit(){
   }
 
