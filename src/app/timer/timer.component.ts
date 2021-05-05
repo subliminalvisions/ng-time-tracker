@@ -1,4 +1,6 @@
 import { Component, OnInit, OnDestroy, Input, SimpleChanges } from '@angular/core';
+import { CurrentTimeService } from '../current-time.service';
+
 @Component({
   selector: 'app-timer',
   templateUrl: './timer.component.html',
@@ -15,9 +17,9 @@ export class TimerComponent implements OnInit, OnDestroy {
   @Input() start: boolean;
   @Input() showTimerControls: boolean;
 
-  constructor() {
-
+  constructor(public timeService: CurrentTimeService) {
   }
+
   ngOnChanges(changes: SimpleChanges) {
     console.log(changes['start']);
     if (changes['start'].currentValue) {
@@ -73,7 +75,7 @@ export class TimerComponent implements OnInit, OnDestroy {
     this.laps.push(lapTime);
   }
   SaveTime() {
-    console.log(this.counter);
+    this.timeService.setTime(this.counter);
   }
 
   clearTimer() {

@@ -16,7 +16,6 @@
              class="form-control">
     </div>
 
-
   </fieldset>
 
   <div class="form-group">
@@ -30,5 +29,10 @@
            class="form-control">
   </div>
 
+  <div class="form-end ">
+
+  <button type="submit" [disabled]="!myform.valid">Submit Entry</button>
+
+  </div>
 
 </form>
