@@ -26,14 +26,11 @@ export class EntryFormComponent implements OnInit, OnChanges, DoCheck {
   // to time var from CurrentTimeService
   ngOnInit() {
     // this.timeSubscription =
-    this.sTime.getTime().subscribe((data) => {
-      console.log(data)
-      this.timeValue = data;
-    });
+    this.loadTimeValue();
+
     // Observable.create((observer) => {
     //   observer = this.sTime.getTime();
     // });
-    console.log(this.timeValue)
 
     // this.sTime.observedTime
     // .subscribe(
@@ -54,6 +51,20 @@ export class EntryFormComponent implements OnInit, OnChanges, DoCheck {
       description: new FormControl()
     });
   }
+
+  loadTimeValue() {
+
+    this.sTime.observedTime.subscribe(
+      (data) => {
+      console.log('data', data)
+      this.timeValue = data;
+    });
+    console.log('timeValue', this.timeValue);
+
+    // this.heroService.getHeroes().subscribe(heroes =>this.heroes = heroes.slice(1,5));
+
+  }
+
   ngDoCheck() {
     // console.log('sTime', this.SavedTime);
     // this.myform.time = this.sTime.getTime();
@@ -69,7 +80,9 @@ export class EntryFormComponent implements OnInit, OnChanges, DoCheck {
     console.log('sTime,cc', this.timeValue);
   }
   logForm() {
+
     this.myform.value.number = this.sTime.getTime();
+    this.loadTimeValue();
     console.log('this.myform.num', this.myform.value.number);
     console.log('this.myform', this.myform.value.time);
 
