@@ -1,4 +1,5 @@
 
+{{ timeValue }} <br>
 {{myform.value | json}}
 
 <form novalidate [formGroup]="myform">
@@ -8,12 +9,17 @@
     <input type="text"
            class="form-control">
   </div>
-
+  <div class="form-group">
+    <label>Number</label>
+    <input type="text"
+           class="form-control">
+  </div>
   <fieldset>
     <div class="form-group">
       <label>Time</label>
       <input type="time"
-             class="form-control">
+             class="form-control"
+             value="SavedTime">
     </div>
 
   </fieldset>
@@ -32,6 +38,7 @@
   <div class="form-end ">
 
   <button type="submit" [disabled]="!myform.valid">Submit Entry</button>
+  <button type="button" (click)="logForm()">logForm</button>
 
   </div>
 

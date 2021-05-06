@@ -75,7 +75,12 @@ export class TimerComponent implements OnInit, OnDestroy {
     this.laps.push(lapTime);
   }
   SaveTime() {
-    this.timeService.setTime(this.counter);
+    if(this.counter) {
+      this.timeService.setTime(this.counter);
+    } else {
+      // console.log('cc, ', this.counter);
+      console.log('empty, ', this.counter);
+    }
   }
 
   clearTimer() {

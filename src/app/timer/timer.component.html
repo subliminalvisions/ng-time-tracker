@@ -12,13 +12,15 @@
 		<button class="timer-button" (click)="startTimer()">
 			{{ startText }}
 		</button>
-		<button [disabled]='!counter' [ngClass]="{'disabled': !counter}" class="timer-button" (click)="lapTimeSplit()">Lap</button>
-		<button [disabled]='running' [ngClass]="{'disabled': running}" class="savetime-button timer-button" (click)="SaveTime()">Save Time</button>
+		<!-- <button [disabled]='!counter' [ngClass]="{'disabled': !counter}" class="timer-button" (click)="lapTimeSplit()">Lap</button> -->
+		<button [disabled]='(running || !counter)' [ngClass]="{'disabled': (running || !counter)}" class="savetime-button timer-button" (click)="SaveTime()">Save Time</button>
 		<button class="timer-button" (click)="clearTimer()">Clear</button>
 		<br>
-		<div *ngFor="let lap of laps;let i = index">
+    {{ counter }}
+		<br>
+		<!-- <div *ngFor="let lap of laps;let i = index">
 			<div> &#9873; <b>Lap {{i+1}} ::</b>  {{lap}}</div>
 			<br>
-		</div>
+		</div> -->
 	</div>
 </div>
