@@ -1,9 +1,8 @@
 
-{{ timeValue }} <br>
+timeValue: {{ timeValue }} <br>
 {{myform.value | json}}
 
 <form novalidate [formGroup]="myform">
-
   <div class="form-group">
     <label>Title</label>
     <input type="text"
@@ -12,7 +11,10 @@
   <div class="form-group">
     <label>Number</label>
     <input type="text"
+    formControlName="number"
+    value="{{timeValue}}"
            class="form-control">
+
   </div>
   <fieldset>
     <div class="form-group">

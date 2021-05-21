@@ -3,42 +3,29 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Entry } from '../entry.model';
 import { CurrentTimeService } from '../current-time.service';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-entry-form',
   templateUrl: './entry-form.component.html',
   styleUrls: ['./entry-form.component.css']
 })
-export class EntryFormComponent implements OnInit, OnChanges, DoCheck {
+export class EntryFormComponent implements OnInit {
 
   entry: Entry;
   // title: string, desccription: string, hours: number, minutes: number
 
   SavedTime: number;
   timeSubscription: Subscription;
-  timeValue: number = 0;
+  timeValue = 0;
   myform: FormGroup;
+  subscription: Subscription;
 
-  constructor(private sTime: CurrentTimeService) {}
+  constructor(private timeService: CurrentTimeService) {}
 
-  // will have to subscribe
-  // to time var from CurrentTimeService
   ngOnInit() {
-    // this.timeSubscription =
-    this.loadTimeValue();
 
-    // Observable.create((observer) => {
-    //   observer = this.sTime.getTime();
-    // });
-
-    // this.sTime.observedTime
-    // .subscribe(
-    //   (time: number) => {
-    //     this.SavedTime = time
-    //   }
-    // );
-
+    // Move FormBuilder to its own Method
     this.myform = new FormGroup({
       title: new FormControl(),
       time: new FormGroup({
@@ -47,46 +34,27 @@ export class EntryFormComponent implements OnInit, OnChanges, DoCheck {
           seconds: new FormControl(),
           milliseconds: new FormControl(),
         }),
-      number: new FormControl(),
+      number: new FormControl(this.timeValue),
       description: new FormControl()
     });
+    this.loadTimeValue();
   }
 
   loadTimeValue() {
-
-    this.sTime.observedTime.subscribe(
-      (data) => {
-      console.log('data', data)
-      this.timeValue = data;
-    });
-    console.log('timeValue', this.timeValue);
-
-    // this.heroService.getHeroes().subscribe(heroes =>this.heroes = heroes.slice(1,5));
-
+    this.subscription = this.timeService.timeUpdated
+    .subscribe(
+      (data: number) => {
+        this.timeValue = data;
+        this.myform.value.number = data;
+      }
+    );
   }
 
-  ngDoCheck() {
-    // console.log('sTime', this.SavedTime);
-    // this.myform.time = this.sTime.getTime();
-  }
-  ngOnChanges() {
-    // this.sTime.getTime();
-    // this.sTime.observedTime
-    // .subscribe(
-    //   (time: number) => {
-    //     this.SavedTime = time
-    //   }
-    // );
-    console.log('sTime,cc', this.timeValue);
-  }
   logForm() {
-
-    this.myform.value.number = this.sTime.getTime();
+    // this.myform.value.number = this.timeService.getTime();
     this.loadTimeValue();
     console.log('this.myform.num', this.myform.value.number);
     console.log('this.myform', this.myform.value.time);
-
   }
-
 
 }
