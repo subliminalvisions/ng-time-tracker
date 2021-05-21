@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { AppRoutingModule } from './app-routing.module';
+// import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { TimerControlComponent } from './timer-control/timer-control.component';
@@ -17,6 +17,7 @@ import { TimeEntryComponent } from './time-entry/time-entry.component';
 import { EntryFormComponent } from './entry-form/entry-form.component';
 import { EntryListComponent } from './entry-list/entry-list.component';
 import { HeaderComponent } from './header/header.component';
+import { AppRoutingModule} from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { HeaderComponent } from './header/header.component';
   imports: [
     BrowserModule,
     FormsModule,
+    AppRoutingModule,
     ReactiveFormsModule
   ],
   providers: [],
