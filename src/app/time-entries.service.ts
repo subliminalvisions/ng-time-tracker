@@ -1,16 +1,23 @@
 import { Injectable } from '@angular/core';
+import { Entry } from './entry.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TimeEntriesService {
 
-  Entries: {};
-  // start with
+  entriesArray: Entry[];
+  // start as empty
 
   constructor() { }
 
-  addEntry() {
-
+  addEntry(entry: Entry) {
+    console.log(entry);
+    this.entriesArray.push(entry);
   }
+  getEntries(): Entry[] {
+    console.log(this.entriesArray);
+    return this.entriesArray;
+  }
+
 }

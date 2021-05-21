@@ -28,6 +28,7 @@ export class EntryFormComponent implements OnInit {
     // Move FormBuilder to its own Method
     this.myform = new FormGroup({
       title: new FormControl(),
+      client: new FormControl(),
       time: new FormGroup({
           // hours: new FormControl(),
           // minutes: new FormControl(),

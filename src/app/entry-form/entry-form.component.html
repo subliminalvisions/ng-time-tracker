@@ -1,6 +1,6 @@
 
-timeValue: {{ timeValue }} <br>
-{{myform.value | json}}
+<!-- timeValue: {{ timeValue }} <br> -->
+<!-- {{myform.value | json}} -->
 
 <form novalidate [formGroup]="myform">
   <div class="form-group">
@@ -18,8 +18,11 @@ timeValue: {{ timeValue }} <br>
   </div>
   <fieldset>
     <div class="form-group">
+      <p>!! convert # -> time</p>
       <label>Time</label>
       <input type="time"
+      formControlName="number"
+
              class="form-control"
              value="SavedTime">
     </div>
@@ -29,18 +32,20 @@ timeValue: {{ timeValue }} <br>
   <div class="form-group">
     <label>Client</label>
     <input type="text"
+    formControlName="client"
            class="form-control">
   </div>
   <div class="form-group">
     <label>Description</label>
-    <input type="text"
-           class="form-control">
+    <textarea type="text"
+    formControlName="description"
+           class="form-control"></textarea>
   </div>
 
   <div class="form-end ">
 
-  <button type="submit" [disabled]="!myform.valid">Submit Entry</button>
-  <button type="button" (click)="logForm()">logForm</button>
+    <button class="btn btn-primary mx-4" type="submit" [disabled]="!myform.valid">Submit Entry</button>
+    <button class="btn btn-primary" type="button" (click)="logForm()">logForm</button>
 
   </div>
 

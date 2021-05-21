@@ -15,6 +15,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { TimeSheetComponent } from './time-sheet/time-sheet.component';
 import { TimeEntryComponent } from './time-entry/time-entry.component';
 import { EntryFormComponent } from './entry-form/entry-form.component';
+import { EntryListComponent } from './entry-list/entry-list.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { EntryFormComponent } from './entry-form/entry-form.component';
     TimerComponent,
     TimeSheetComponent,
     TimeEntryComponent,
-    EntryFormComponent
+    EntryFormComponent,
+    EntryListComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
