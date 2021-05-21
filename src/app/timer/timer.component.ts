@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Input, SimpleChanges } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, SimpleChanges, OnChanges } from '@angular/core';
 import { CurrentTimeService } from '../current-time.service';
 
 @Component({
@@ -7,12 +7,17 @@ import { CurrentTimeService } from '../current-time.service';
   styleUrls: ['./timer.component.css']
 })
 
-
-export class TimerComponent implements OnInit, OnDestroy {
+export class TimerComponent implements OnInit, OnDestroy, OnChanges {
   clock: any;
   minutes: any = '00';
   seconds: any = '00';
   milliseconds: any = '00';
+
+  laps: any = [];
+  counter: number;
+  timerRef;
+  running = false;
+  startText = 'Start';
 
   @Input() start: boolean;
   @Input() showTimerControls: boolean;
@@ -20,26 +25,18 @@ export class TimerComponent implements OnInit, OnDestroy {
   constructor(public timeService: CurrentTimeService) {
   }
 
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges(changes: SimpleChanges): void {
     console.log(changes['start']);
     if (changes['start'].currentValue) {
       this.startTimer();
     }
-    else{
+    else {
       this.clearTimer();
     }
   }
 
-  laps: any = [];
-  counter: number;
-  timerRef;
-  running: boolean = false;
-  startText = 'Start';
-
 
   startTimer() {
-    // const source = timer(0, Date.now());
-    // const subscribe = source.subscribe(val => console.log(val));
     this.running = !this.running;
     if (this.running) {
       this.startText = 'Stop';
@@ -70,16 +67,12 @@ export class TimerComponent implements OnInit, OnDestroy {
       clearInterval(this.timerRef);
     }
   }
-  lapTimeSplit() {
-    let lapTime = this.minutes + ':' + this.seconds + ':' + this.milliseconds;
-    this.laps.push(lapTime);
-  }
+
   SaveTime() {
-    if(this.counter) {
+    if (this.counter) {
       this.timeService.setTime(this.counter);
     } else {
-      // console.log('cc, ', this.counter);
-      console.log('empty, ', this.counter);
+      console.log('EMPTY, ', this.counter);
     }
   }
 
@@ -88,8 +81,8 @@ export class TimerComponent implements OnInit, OnDestroy {
     this.startText = 'Start';
     this.counter = undefined;
     this.milliseconds = '00',
-      this.seconds = '00',
-      this.minutes = '00';
+    this.seconds = '00',
+    this.minutes = '00';
     this.laps = [];
     clearInterval(this.timerRef);
   }
