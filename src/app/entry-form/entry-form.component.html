@@ -1,8 +1,12 @@
 
-<!-- timeValue: {{ timeValue }} <br> -->
+timeValue: {{ timeValue }} <br>
 <!-- {{myform.value | json}} -->
 
 <form novalidate [formGroup]="myform">
+  <div class="btn btn-test">
+    <button class="btn btn-primary" type="button" (click)="getTime()">getTime</button>
+
+  </div>
   <div class="form-group">
     <label>Title</label>
     <input type="text"

@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy, Input, SimpleChanges, OnChanges } from '@angular/core';
+import { Router } from '@angular/router';
 import { CurrentTimeService } from '../current-time.service';
 
 @Component({
@@ -22,7 +23,9 @@ export class TimerComponent implements OnInit, OnDestroy, OnChanges {
   @Input() start: boolean;
   @Input() showTimerControls: boolean;
 
-  constructor(public timeService: CurrentTimeService) {
+  constructor(
+    public timeService: CurrentTimeService,
+    private router: Router) {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -71,6 +74,8 @@ export class TimerComponent implements OnInit, OnDestroy, OnChanges {
   SaveTime() {
     if (this.counter) {
       this.timeService.setTime(this.counter);
+      this.router.navigate(['/new']);
+
     } else {
       console.log('EMPTY, ', this.counter);
     }

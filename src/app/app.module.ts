@@ -18,6 +18,7 @@ import { EntryFormComponent } from './entry-form/entry-form.component';
 import { EntryListComponent } from './entry-list/entry-list.component';
 import { HeaderComponent } from './header/header.component';
 import { AppRoutingModule} from './app-routing.module';
+import { IntroComponent } from './intro/intro.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { AppRoutingModule} from './app-routing.module';
     TimeEntryComponent,
     EntryFormComponent,
     EntryListComponent,
-    HeaderComponent
+    HeaderComponent,
+    IntroComponent
   ],
   imports: [
     BrowserModule,
