@@ -9,6 +9,7 @@ export class Entry {
 
   // public billingRate: number;
   public client: string;
+  public project: string;
   public description: string;
 
   constructor(title: string, desc: string, hours: number, min: number) {

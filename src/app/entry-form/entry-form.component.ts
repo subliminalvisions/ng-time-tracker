@@ -1,9 +1,10 @@
 import { AfterViewInit, Component, DoCheck, OnChanges, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
+// import { ReactiveFormsModule } from '@angular/forms';
 import { Entry } from '../entry.model';
 import { CurrentTimeService } from '../current-time.service';
 import { Observable, Subscription, BehaviorSubject } from 'rxjs';
+import { TimeEntriesService } from '../time-entries.service';
 
 @Component({
   selector: 'app-entry-form',
@@ -21,7 +22,9 @@ export class EntryFormComponent implements OnInit, AfterViewInit {
   myform: FormGroup;
   subscription: Subscription;
 
-  constructor(private timeService: CurrentTimeService) {}
+  constructor(
+    private timeService: CurrentTimeService,
+    private entryService: TimeEntriesService) {}
 
   ngOnInit() {
     // this.getTime();
@@ -42,23 +45,21 @@ export class EntryFormComponent implements OnInit, AfterViewInit {
       number: new FormControl(this.timeValue),
       description: new FormControl()
     });
-
-    this.myform.value.number = 222;
-
+    this.myform.patchValue({
+      title: 'test Value1',
+      // formControlName2: myValue2 (can be omitted)
+    });
+    // this.myform.value.number = 222;
     // this.loadTimeValue();
   }
   ngAfterViewInit() {
     this.loadTimeValue();
-
   }
-
   loadTimeValue() {
-
     // this.timeValue = this.timeService.getBehaviorTime();
+    this.getTime();
     this.timeValue = this.timeService.currentTime.value;
     console.log('timeValue,,', this.timeValue);
-
-    this.getTime();
     // this.subscription = this.timeService.timeUpdated
     // .subscribe(
     //   (data: number) => {
@@ -70,7 +71,6 @@ export class EntryFormComponent implements OnInit, AfterViewInit {
   }
   getTime() {
     this.timeValue = this.timeService.getBehaviorTime();
-
     this.timeSubscription = this.timeService.currentTime
     .subscribe(
       (data: number) => {
@@ -80,15 +80,17 @@ export class EntryFormComponent implements OnInit, AfterViewInit {
       }
     );
   }
-  getTimeBehav() {
-
-  }
+  // getTimeBehav() {}
 
   logForm() {
     // this.myform.value.number = this.timeService.getTime();
     this.loadTimeValue();
     console.log('this.myform.num', this.myform.value.number);
-    console.log('this.myform', this.myform.value.time);
+    console.log('this.myform', this.myform.value);
   }
-
+  sendToTimeSheet() {
+    this.entry = this.myform.value;
+    console.log('this.myform', this.entry);
+    this.entryService.addEntry(this.entry);
+  }
 }

@@ -1,1 +1,10 @@
-<p>entry-list works!</p>
+<p>TimeSheet Entries!</p>
+
+{{ entries | json  }}
+<div class="entryList">
+  <div class="entry-item" *ngFor="let item of entries">
+    <div class="name">{{item.title}}</div>
+    <div class="number">{{item.number}}</div>
+  </div>
+
+</div>

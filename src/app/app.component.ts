@@ -9,7 +9,6 @@ export class AppComponent implements OnInit {
   public oddArray: number[] = [];
   public evenArray: number[] = [];
   public myCount = 0;
-  _start = false;
 
   constructor() {
   }
@@ -17,11 +16,5 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  start(){
-    this._start = true;
-  }
-  clear(){
-    this._start = false;
-  }
 
 }

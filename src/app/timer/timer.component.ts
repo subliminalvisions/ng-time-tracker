@@ -8,7 +8,8 @@ import { CurrentTimeService } from '../current-time.service';
   styleUrls: ['./timer.component.css']
 })
 
-export class TimerComponent implements OnInit, OnDestroy, OnChanges {
+export class TimerComponent implements OnInit, OnDestroy {
+  // OnChanges
   clock: any;
   minutes: any = '00';
   seconds: any = '00';
@@ -20,24 +21,29 @@ export class TimerComponent implements OnInit, OnDestroy, OnChanges {
   running = false;
   startText = 'Start';
 
-  @Input() start: boolean;
+  _start = false;
+  // @Input() start: boolean;
   @Input() showTimerControls: boolean;
 
   constructor(
     public timeService: CurrentTimeService,
     private router: Router) {
   }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes['start']);
-    if (changes['start'].currentValue) {
-      this.startTimer();
-    }
-    else {
-      this.clearTimer();
-    }
+  // ngOnChanges(changes: SimpleChanges): void {
+  //   // console.log(changes['start']);
+  //   if (changes['start'].currentValue) {
+  //     this.startTimer();
+  //   }
+  //   else {
+  //     this.clearTimer();
+  //   }
+  // }
+  start(){
+    this._start = true;
   }
-
+  clear(){
+    this._start = false;
+  }
 
   startTimer() {
     this.running = !this.running;
