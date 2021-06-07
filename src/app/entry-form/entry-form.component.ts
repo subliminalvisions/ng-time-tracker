@@ -41,6 +41,7 @@ export class EntryFormComponent implements OnInit, AfterViewInit {
     this.myform = new FormGroup({
       title: new FormControl(),
       client: new FormControl(),
+      description: new FormControl(),
       time: new FormGroup({
           hours: new FormControl(this.hours),
           minutes: new FormControl(this.minutes),
@@ -48,7 +49,6 @@ export class EntryFormComponent implements OnInit, AfterViewInit {
           milliseconds: new FormControl(this.milliseconds),
         }),
       number: new FormControl(this.timeValue),
-      description: new FormControl()
     });
     this.fillTestValues();
     // this.myform.value.number = 222;
@@ -75,7 +75,7 @@ export class EntryFormComponent implements OnInit, AfterViewInit {
     this.myform.patchValue({
       title: 'test Value1',
       client: 'viget',
-      desription: 'descripto test Val lorem ipsum',
+      description: 'descripto test Val lorem ipsum',
       // project: 'firt website',
       // formControlName2: myValue2 (can be omitted)
     });

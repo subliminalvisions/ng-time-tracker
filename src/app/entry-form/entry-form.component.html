@@ -24,14 +24,18 @@
           <fieldset>
             <div class="form-group">
               <p>sec: {{ this.seconds }} </p>
-              <p>time-f: {{ this.timeFormatted }} </p>
+              <!-- <p>time-f: {{ this.timeFormatted }} </p> -->
               <label>Time</label>
-              <input type="time"
+              <input
+              type="text"
               formControlName="number"
                      class="form-control"
-                     value="{{timeValue}}"
+
+                     value="{{timeValue | date:'mm:ss' }}"
 
                      >
+                     <!-- {{ p.value.playerTimer * 1000 | date:'mm:ss' }} -->
+
                      <!-- value="SavedTime" -->
             </div>
 
