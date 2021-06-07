@@ -7,8 +7,29 @@ import { Entry } from './entry.model';
 })
 export class TimeEntriesService {
   // start as empty
-  entriesArray: Entry[] = [];
+  // entriesArray: Entry[] = [];
   entriesChanged = new Subject<Entry[]>();
+
+
+  public title: string;
+  public minutes: number;
+  public hours: number;
+  public client: string;
+  public project: string;
+  public description: string;
+
+  entriesArray: Entry[] = [
+        new Entry('First Entry',
+          'Time Entry Info Description',
+          2,
+          15
+        ),
+        new Entry('Second Entry',
+          'Info Description for enty',
+          1,
+          30
+        ),
+      ];
 
   constructor() { }
 

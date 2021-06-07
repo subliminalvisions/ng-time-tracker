@@ -1,0 +1,17 @@
+.entryList {
+  padding: 4px 0;
+}
+.entry-item {
+  display: flex;
+  /* justify-content: flex-start; */
+  justify-content: space-between;
+  border-top: 1px solid #ccc;
+}
+.entry-item div {
+  /* justify-self: ; */
+  padding: 4px 8px;
+}
+.entry-item div.time {
+  /* justify-self: ; */
+  font-weight: 700;
+}

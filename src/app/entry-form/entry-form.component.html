@@ -23,12 +23,16 @@
           </div>
           <fieldset>
             <div class="form-group">
-              <p>!! convert # -> time</p>
+              <p>sec: {{ this.seconds }} </p>
+              <p>time-f: {{ this.timeFormatted }} </p>
               <label>Time</label>
               <input type="time"
               formControlName="number"
                      class="form-control"
-                     value="SavedTime">
+                     value="{{timeValue}}"
+
+                     >
+                     <!-- value="SavedTime" -->
             </div>
 
           </fieldset>

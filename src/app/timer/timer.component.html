@@ -1,8 +1,9 @@
 <div class="container">
 	<section class="timer-counter-label">
-		<div *ngIf="counter" [ngClass]="{blink: !running}">
-			<span>{{minutes}}:</span><span>{{seconds}}:</span> <span>{{milliseconds}}</span> </div>
-		<div *ngIf="!counter">
+		<div *ngIf="counter" [ngClass]="{blink: !running}" class="bg-light">
+			<span>{{minutes}}:</span><span>{{seconds}}:</span> <span>{{milliseconds}}</span>
+    </div>
+		<div *ngIf="!counter" class="bg-light">
 			<span>{{minutes}}:</span><span>{{seconds}}:</span> <span>{{milliseconds}}</span>
 		</div>
 	</section>

@@ -18,7 +18,12 @@ export class EntryFormComponent implements OnInit, AfterViewInit {
 
   SavedTime: number;
   timeSubscription: Subscription;
-  timeValue: number = 0;
+  timeValue = 0;
+  timeFormatted: string;
+  milliseconds = 0;
+  seconds = 0;
+  minutes = 0;
+  hours = 0;
   myform: FormGroup;
   subscription: Subscription;
 
@@ -37,20 +42,43 @@ export class EntryFormComponent implements OnInit, AfterViewInit {
       title: new FormControl(),
       client: new FormControl(),
       time: new FormGroup({
-          // hours: new FormControl(),
-          // minutes: new FormControl(),
-          seconds: new FormControl(),
-          milliseconds: new FormControl(),
+          hours: new FormControl(this.hours),
+          minutes: new FormControl(this.minutes),
+          seconds: new FormControl(this.seconds),
+          milliseconds: new FormControl(this.milliseconds),
         }),
       number: new FormControl(this.timeValue),
       description: new FormControl()
     });
-    this.myform.patchValue({
-      title: 'test Value1',
-      // formControlName2: myValue2 (can be omitted)
-    });
+    this.fillTestValues();
     // this.myform.value.number = 222;
     // this.loadTimeValue();
+  }
+  convertNumToTime(num: number) {
+    this.seconds = (num / 1000);
+    this.minutes = (this.seconds / 60);
+  }
+  msToTime(s: number) {
+    const ms = s % 1000;
+    s = (s - ms) / 1000;
+    const secs = s % 60;
+    s = (s - secs) / 60;
+    const mins = s % 60;
+    const hrs = (s - mins) / 60;
+    this.timeFormatted = this.padNum(hrs) + ':' + this.padNum(mins) + ':' + this.padNum(secs);
+    return this.timeFormatted;
+    // return hrs + ':' + mins + ':' + secs + '.' + ms;
+  }
+
+
+  fillTestValues() {
+    this.myform.patchValue({
+      title: 'test Value1',
+      client: 'viget',
+      desription: 'descripto test Val lorem ipsum',
+      // project: 'firt website',
+      // formControlName2: myValue2 (can be omitted)
+    });
   }
   ngAfterViewInit() {
     this.loadTimeValue();
@@ -69,6 +97,13 @@ export class EntryFormComponent implements OnInit, AfterViewInit {
     //   }
     // );
   }
+  padNum(num: number) {
+    if (Number(num) < 10) {
+      return '0' + num;
+    } else {
+      return '' + num;
+    }
+  }
   getTime() {
     this.timeValue = this.timeService.getBehaviorTime();
     this.timeSubscription = this.timeService.currentTime
@@ -77,6 +112,8 @@ export class EntryFormComponent implements OnInit, AfterViewInit {
         console.log('getTime',data);
         this.timeValue = data;
         this.myform.value.number = data;
+        this.convertNumToTime(this.timeValue);
+        this.myform.value.number = this.msToTime(this.timeValue);
       }
     );
   }
