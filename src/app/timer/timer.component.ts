@@ -80,11 +80,11 @@ export class TimerComponent implements OnInit, OnDestroy {
   SaveTime() {
     if (this.counter) {
       this.timeService.setTime(this.counter);
-      this.router.navigate(['/new']);
-
     } else {
       console.log('EMPTY, ', this.counter);
     }
+    // this.router.navigate(['/new']);
+    this.router.navigate(['/time-entry/new']);
   }
 
   clearTimer() {

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { Entry } from './entry.model';
 
@@ -31,13 +32,15 @@ export class TimeEntriesService {
         ),
       ];
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   addEntry(entry: Entry) {
     console.log(entry);
     this.entriesArray.push(entry);
     this.entriesChanged.next(this.entriesArray.slice());
     console.log(this.entriesArray);
+    this.router.navigate(['/entry-list']);
+
   }
   getEntries(): Entry[] {
     console.log(this.entriesArray);
