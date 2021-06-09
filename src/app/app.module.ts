@@ -17,13 +17,13 @@ import { AppRoutingModule} from './app-routing.module';
 import { IntroComponent } from './intro/intro.component';
 import { TimeEntryEditComponent } from './time-entry/time-entry-edit/time-entry-edit.component';
 import { EntryItemComponent } from './entries/entry-item/entry-item.component';
+import { EntryEditComponent } from './entries/entry-edit/entry-edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TimerControlComponent,
-    // NumberOddComponent,
-    // NumberEvenComponent,
+
     PageNotFoundComponent,
     TimerComponent,
     TimeSheetComponent,
@@ -33,7 +33,8 @@ import { EntryItemComponent } from './entries/entry-item/entry-item.component';
     HeaderComponent,
     IntroComponent,
     TimeEntryEditComponent,
-    EntryItemComponent
+    EntryItemComponent,
+    EntryEditComponent
   ],
   imports: [
     BrowserModule,

@@ -31,6 +31,7 @@ export class EntryFormComponent implements OnInit, AfterViewInit {
     private timeService: CurrentTimeService,
     private entryService: TimeEntriesService) {}
 
+
   ngOnInit() {
     // this.getTime();
     this.timeValue = this.timeService.getBehaviorTime();

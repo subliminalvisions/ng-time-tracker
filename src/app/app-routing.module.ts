@@ -6,6 +6,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { EntryListComponent } from './entries/entry-list.component';
 import { IntroComponent } from './intro/intro.component';
 import { TimeEntryEditComponent } from './time-entry/time-entry-edit/time-entry-edit.component';
+import { EntryEditComponent } from './entries/entry-edit/entry-edit.component';
 import { TimeEntryComponent } from './time-entry/time-entry.component';
 
 const routes: Routes = [
@@ -17,11 +18,11 @@ const routes: Routes = [
   { path: 'entries',
   // component: EntryListComponent
    children: [
-    { path: '', pathMatch: 'full', redirectTo: 'list' },
-    { path: 'list', component: EntryListComponent },
-    { path: 'new', component: TimeEntryComponent },
-    { path: ':id', component: TimeEntryEditComponent },
-    { path: ':id/edit', component: TimeEntryEditComponent },
+    { path: '', component: EntryListComponent },
+    // { path: 'list', component: EntryListComponent },
+    { path: 'new', component: EntryEditComponent },
+    { path: ':id', component: EntryEditComponent },
+    { path: ':id/edit', component: EntryEditComponent },
     ]
   },
   // { path: 'news', component: NewsComponent},
