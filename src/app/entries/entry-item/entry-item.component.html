@@ -1,11 +1,12 @@
-<p>TimeSheet Entries!</p>
-
-<!-- {{ entries | json  }} -->
-<div class="entryList">
-  <div class="entry-item" *ngFor="let item of entries">
+<a
+style="cursor: pointer;"
+[routerLink]="index"
+routerLinkActive="active"
+class="list-group-item clearfix"
+>
+  <div class="entry-item" >
     <div class="name">{{item.title}}</div>
     <div class="descr">{{item.description}}</div>
     <div class="time"> {{item.hours}}:{{item.minutes}}</div>
   </div>
-
-</div>
+</a>

@@ -13,6 +13,7 @@
 		</button>
 
     <button [disabled]='(running || !counter)' [ngClass]="{'disabled': (running || !counter)}" class="savetime-button timer-button" (click)="SaveTime()">Save Time</button>
+
 		<button class="timer-button" (click)="clearTimer()">Clear</button>
 		<br>
     {{ counter }}

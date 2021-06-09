@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NumberEvenComponent } from './number-even.component';
+import { EntryItemComponent } from './entry-item.component';
 
-describe('NumberEvenComponent', () => {
-  let component: NumberEvenComponent;
-  let fixture: ComponentFixture<NumberEvenComponent>;
+describe('EntryItemComponent', () => {
+  let component: EntryItemComponent;
+  let fixture: ComponentFixture<EntryItemComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NumberEvenComponent ]
+      declarations: [ EntryItemComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NumberEvenComponent);
+    fixture = TestBed.createComponent(EntryItemComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

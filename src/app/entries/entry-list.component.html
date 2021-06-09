@@ -1,0 +1,15 @@
+<h3>TimeSheet Entries!</h3>
+
+<div class="entryList">
+  <app-entry-item
+  [item]="entry"
+  [index]="i"
+  *ngFor="let entry of entries; let i=index"
+  class="entry-item"></app-entry-item>
+</div>
+
+<hr/>
+<hr/>
+<i class="test">
+  <!-- {{ entries | json  }} -->
+</i>
