@@ -57,8 +57,16 @@
 
           <div class="form-end ">
 
-            <button class="btn btn-primary mx-4"
-            type="submit" [disabled]="!myform.valid">Submit to Time Sheet</button>
+            <button class="btn btn-success mx-4"
+            type="submit" [disabled]="!myform.valid">Save Entry Updates</button>
+
+            <!-- <button class="btn btn-primary mx-4"
+            type="submit" [disabled]="!myform.valid">Submit to Time Sheet</button> -->
+
+            <button class="btn btn-danger"
+            type="button">Cancel</button>
+            <!-- (click)="cancelEditing()" -->
+
             <button class="btn btn-primary" type="button" (click)="logForm()">logForm</button>
 
           </div>

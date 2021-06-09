@@ -132,4 +132,6 @@ export class EntryFormComponent implements OnInit, AfterViewInit {
     this.entryService.addEntry(this.entry);
     // this.router.navigate(['/entry-list']);
   }
+
 }
+

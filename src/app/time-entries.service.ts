@@ -47,4 +47,8 @@ export class TimeEntriesService {
     return this.entriesArray.slice();
   }
 
+  getEntrybyID(index: number): Entry {
+    return this.entriesArray[index];
+  }
+
 }

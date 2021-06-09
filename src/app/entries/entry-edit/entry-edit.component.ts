@@ -1,11 +1,12 @@
-import { AfterViewInit, Component, DoCheck, OnChanges, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
 import { Entry } from '../../entry.model';
 
 // import { ReactiveFormsModule } from '@angular/forms';
 import { CurrentTimeService } from '../../current-time.service';
 import { Observable, Subscription, BehaviorSubject } from 'rxjs';
 import { TimeEntriesService } from '../../time-entries.service';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 
 @Component({
@@ -33,32 +34,60 @@ export class EntryEditComponent implements OnInit {
   subscription: Subscription;
 
   constructor(
+    private route: ActivatedRoute,
+    private router: Router,
     private timeService: CurrentTimeService,
     private entryService: TimeEntriesService) {}
 
+
     ngOnInit() {
       // this.getTime();
+
+      this.route.params
+      .subscribe(
+        (params: Params) => {
+          this.id = +params['id'];
+          this.editMode = params['id'] != null;
+          this.initForm();
+        }
+      );
       this.timeValue = this.timeService.getBehaviorTime();
       console.log(this.timeValue);
       // this.timeValue = this.timeService.getBehaviorTime.value;
 
-      // Move FormBuilder to its own Method
+      // this.loadTimeValue();
+    }
+    initForm(): void {
+      let entryName = '';
+      // let recipeImagePath = '';
+      let entryDescription = '';
+      // const EntryIngredients = new FormArray([]);
+
+      if (this.editMode) {
+        const entry = this.entryService.getEntrybyID(this.id);
+        console.log(entry);
+        entryName = entry.title;
+        entryDescription = entry.description;
+      }
       this.myform = new FormGroup({
-        title: new FormControl(),
+        title: new FormControl(entryName, [Validators.required]),
         client: new FormControl(),
-        description: new FormControl(),
+        description: new FormControl(entryDescription, [Validators.required]),
         time: new FormGroup({
+          // patch time values from entryService.getEntrybyID(this.id)
             hours: new FormControl(this.hours),
             minutes: new FormControl(this.minutes),
             seconds: new FormControl(this.seconds),
-            milliseconds: new FormControl(this.milliseconds),
+            // milliseconds: new FormControl(this.milliseconds),
           }),
         number: new FormControl(this.timeValue),
       });
-      this.fillTestValues();
-      // this.myform.value.number = 222;
-      // this.loadTimeValue();
     }
+
+    instantiateFormGroup() {
+      console.log('test instantiate G');
+    }
+
     convertNumToTime(num: number) {
       this.seconds = (num / 1000);
       this.minutes = (this.seconds / 60);
