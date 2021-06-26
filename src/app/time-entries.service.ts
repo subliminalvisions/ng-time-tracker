@@ -10,7 +10,7 @@ export class TimeEntriesService {
   // start as empty
   // entriesArray: Entry[] = [];
   entriesChanged = new Subject<Entry[]>();
-
+  entrySelected = new Subject<Entry>();
 
   public title: string;
   public minutes: number;
@@ -39,7 +39,7 @@ export class TimeEntriesService {
     this.entriesArray.push(entry);
     this.entriesChanged.next(this.entriesArray.slice());
     console.log(this.entriesArray);
-    this.router.navigate(['/entry-list']);
+    this.router.navigate(['/entries']);
 
   }
   getEntries(): Entry[] {
@@ -49,6 +49,11 @@ export class TimeEntriesService {
 
   getEntrybyID(index: number): Entry {
     return this.entriesArray[index];
+  }
+
+  updateEntry(index: number, newEntry: Entry): void {
+    this.entriesArray[index] = (newEntry);
+    this.entriesChanged.next(this.entriesArray.slice());
   }
 
 }

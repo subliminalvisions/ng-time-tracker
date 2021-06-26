@@ -82,11 +82,15 @@ export class EntryEditComponent implements OnInit {
           }),
         number: new FormControl(this.timeValue),
       });
+      this.loadTimeValue();
     }
 
-    instantiateFormGroup() {
-      console.log('test instantiate G');
-    }
+    // updateEntry(index: number, newEntry: Entry): void {
+
+    // instantiateFormGroup() {
+    //   console.log('test instantiate G');
+    // }
+
 
     convertNumToTime(num: number) {
       this.seconds = (num / 1000);
@@ -115,7 +119,6 @@ export class EntryEditComponent implements OnInit {
       });
     }
     ngAfterViewInit() {
-      this.loadTimeValue();
     }
     loadTimeValue() {
       // this.timeValue = this.timeService.getBehaviorTime();
@@ -159,10 +162,27 @@ export class EntryEditComponent implements OnInit {
       console.log('this.myform.num', this.myform.value.number);
       console.log('this.myform', this.myform.value);
     }
-    sendToTimeSheet() {
-      this.entry = this.myform.value;
-      console.log('this.myform', this.entry);
-      this.entryService.addEntry(this.entry);
-      // this.router.navigate(['/entry-list']);
+    // sendToTimeSheet() {
+    //   this.entry = this.myform.value;
+    //   console.log('this.myform', this.entry);
+    //   this.entryService.addEntry(this.entry);
+    //   // this.router.navigate(['/entry-list']);
+    // }
+
+    cancelEditing(): void {
+      this.router.navigate(['../'], { relativeTo: this.route});
     }
+    onSubmitEntry(): void {
+      if (this.editMode) {
+        console.log(this.myform.value);
+        this.entryService.updateEntry(this.id, this.myform.value);
+      } else {
+        this.entryService.addEntry(this.myform.value);
+      }
+      this.cancelEditing();
+    }
+    // get controls(): any { // a getter!
+    //   return (<FormArray>this.myform.get('ingredients')).controls;
+    // }
+
   }

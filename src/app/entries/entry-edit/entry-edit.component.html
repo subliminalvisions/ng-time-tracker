@@ -4,7 +4,7 @@
       <app-timer [showTimerControls]="true"></app-timer>
     </div>
     <div class="col-sm-6 order-sm-1">
-      <form novalidate [formGroup]="myform" (ngSubmit)="sendToTimeSheet()" #f>
+      <form novalidate [formGroup]="myform" (ngSubmit)="onSubmitEntry()" #f>
         <!-- <div class="btn btn-test">
             <button class="btn btn-primary" type="button" (click)="getTime()">getTime</button>
           </div> -->

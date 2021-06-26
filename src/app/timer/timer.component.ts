@@ -84,7 +84,7 @@ export class TimerComponent implements OnInit, OnDestroy {
       console.log('EMPTY, ', this.counter);
     }
     // this.router.navigate(['/new']);
-    this.router.navigate(['/time-entry/new']);
+    this.router.navigate(['/entries/new']);
   }
 
   clearTimer() {
